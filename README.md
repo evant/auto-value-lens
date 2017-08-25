@@ -1,12 +1,47 @@
 # AutoValue: Lens Extension
 
 An extension to google's [AutoValue](https://github.com/google/auto/tree/master/value) that creates
-lenses for the fields of an AutoValue object.
+lenses for the properties of an AutoValue object.
 
 ## Download
 
+### Java
+
+```groovy
+buildscript {
+  repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+  dependencies {
+    classpath "net.ltgt.gradle:gradle-apt-plugin:0.11"
+  }
+}
+
+apply plugin: "net.ltgt.apt"
+
+repositories {
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+dependencies {
+  compile 'me.tatarka.lens:lens:0.1-SNAPSHOT'
+  apt 'me.tatarka.lens:auto-value-lens:0.1-SNAPSHOT'
+  compileOnly 'me.tatarka.lens:auto-value-lens-annotations:0.1-SNAPSHOT'
+}
 ```
-compile 'TODO'
+
+### Android
+
+```groovy
+repositories {
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+dependencies {
+  compile 'me.tatarka.lens:lens:0.1-SNAPSHOT'
+  annotationProcessor 'me.tatarka.lens:auto-value-lens:0.1-SNAPSHOT'
+  compileOnly 'me.tatarka.lens:auto-value-lens-annotations:0.1-SNAPSHOT'
+}
 ```
 
 ## Usage
