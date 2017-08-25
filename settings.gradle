@@ -1,0 +1,6 @@
+rootProject.name = 'lens-project'
+include ':lens'
+include ':auto-value-lens'
+include ':auto-value-lens-annotations'
+include ':sample'
+
