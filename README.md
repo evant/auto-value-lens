@@ -92,9 +92,11 @@ For example, say you have the AutoValue classes:
 }
 @AutoValue public abstract Job {
   public abstract Map<String, Person> people();
+  ...
 }
 @AutoValue public abstract Person {
   public abstract int age();
+  ...
 }
 ```
 
@@ -140,5 +142,5 @@ IntLens<Company> lens = Company.lenses().jobs()
   .andThen(Lenses.mapKey("Sue"))
   .andThen(Person.lenses().age());
 
-Company newCompany = lens.updateAsInt(company, (int age) -> age + 1);
+Company newCompany = lens.updateAsInt(company, age -> age + 1);
 ```
