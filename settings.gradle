@@ -1,6 +1,5 @@
-rootProject.name = 'lens-project'
+rootProject.name = 'auto-value-lens'
 include ':lens'
 include ':auto-value-lens'
 include ':auto-value-lens-annotations'
 include ':sample'
-

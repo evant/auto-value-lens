@@ -134,8 +134,8 @@ class AutoValueLensExtensionTest {
 
             import java.lang.Override;
             import java.lang.String;
-            import me.tatarka.lens.Lens;
             import me.tatarka.lens.IntLens;
+            import me.tatarka.lens.Lens;
 
             final class AutoValue_Test extends ${'$'}AutoValue_Test {
                 AutoValue_Test(String s, int i) {
