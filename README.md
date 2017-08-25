@@ -120,7 +120,7 @@ Company newCompany = company.newBuilder()
 
 The actual logic is `person.age() + 1` but its' lost in the boilerplate!
 
-There is an (auto-value-with)[https://github.com/gabrielittner/auto-value-with] which gives you with
+There is an [auto-value-with](https://github.com/gabrielittner/auto-value-with) which gives you with
 methods that does make this a little nicer, but it's still a lot. And more importantly, your update
 logic is still lost in the middle of it.
 
