@@ -106,7 +106,7 @@ class AutoValueLensExtensionTest {
 
             import com.google.auto.value.AutoValue;
             import me.tatarka.lens.Lens;
-            import me.tatarka.lens.LensInt;
+            import me.tatarka.lens.IntLens;
             import me.tatarka.lens.autovalue.AutoValueLenses;
 
             @AutoValue
@@ -124,7 +124,7 @@ class AutoValueLensExtensionTest {
                 public static abstract class Lenses {
                     public abstract Lens<Test, String> s();
 
-                    public abstract LensInt<Test> i();
+                    public abstract IntLens<Test> i();
                 }
             }
         """)
@@ -135,7 +135,7 @@ class AutoValueLensExtensionTest {
             import java.lang.Override;
             import java.lang.String;
             import me.tatarka.lens.Lens;
-            import me.tatarka.lens.LensInt;
+            import me.tatarka.lens.IntLens;
 
             final class AutoValue_Test extends ${'$'}AutoValue_Test {
                 AutoValue_Test(String s, int i) {
@@ -157,7 +157,7 @@ class AutoValueLensExtensionTest {
                         }
                     };
 
-                    private final LensInt<Test> i = new LensInt<Test>() {
+                    private final IntLens<Test> i = new IntLens<Test>() {
                         @Override
                         public int getAsInt(Test outer) {
                             return outer.i();
@@ -178,7 +178,7 @@ class AutoValueLensExtensionTest {
                     }
 
                     @Override
-                    public LensInt<Test> i() {
+                    public IntLens<Test> i() {
                         return i;
                     }
                 }
@@ -200,7 +200,7 @@ class AutoValueLensExtensionTest {
 
             import com.google.auto.value.AutoValue;
             import me.tatarka.lens.Lens;
-            import me.tatarka.lens.LensInt;
+            import me.tatarka.lens.IntLens;
             import me.tatarka.lens.autovalue.AutoValueLenses;
 
             @AutoValue

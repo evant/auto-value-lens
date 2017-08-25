@@ -16,7 +16,7 @@ public class LensTest {
 
     @Test
     public void compose() {
-        LensInt<Object1> lens = Object2.lens.compose(Object1.lens);
+        IntLens<Object1> lens = Object2.lens.compose(Object1.lens);
         Object1 object1 = new Object1(new Object2(1));
 
         assertThat(lens.getAsInt(object1)).isEqualTo(1);
@@ -25,7 +25,7 @@ public class LensTest {
 
     @Test
     public void andThen() {
-        LensInt<Object1> lens = Object1.lens.andThen(Object2.lens);
+        IntLens<Object1> lens = Object1.lens.andThen(Object2.lens);
         Object1 object1 = new Object1(new Object2(1));
 
         assertThat(lens.getAsInt(object1)).isEqualTo(1);
@@ -72,7 +72,7 @@ public class LensTest {
             this.value = value;
         }
 
-        static LensInt<Object2> lens = new LensInt<Object2>() {
+        static IntLens<Object2> lens = new IntLens<Object2>() {
             @Override
             public int getAsInt(Object2 object2) {
                 return object2.value;

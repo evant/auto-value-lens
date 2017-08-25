@@ -20,7 +20,7 @@ Create an interface (or abstract class) similar to how you would for a builder.
 
   @AutoValueLenses public interface Lenses {
     Lens<Foo, String> bar();
-    LensInt<Foo> baz();
+    IntLens<Foo> baz();
   }
 
   public static Foo create(String bar, int baz) {
@@ -40,7 +40,7 @@ You can now do functional queries and updates to your fields.
 Foo foo = Foo.create("test", 1);
 Foo.lenses().bar().get(foo); // => "test"
 Foo.lenses().bar().set(foo, "new"); // => Foo("new", 1)
-Foo.lenses().baz().update(foo, v -> v + 1); // => Foo("test", 2)
+Foo.lenses().baz().updateAsInt(foo, v -> v + 1); // => Foo("test", 2)
 ```
 
 ## What are lenses? Why do I want them?
@@ -99,11 +99,11 @@ With lenses, you can separate your update logic from where it's applied. You bui
 your data, then you can directly manipulate it.
 
 ```java
-LensInt<Company> lens = Company.lenses().jobs()
+IntLens<Company> lens = Company.lenses().jobs()
   .andThen(Lenses.listIndex(1))
   .andThen(Job.lenses().people())
   .andThen(Lenses.mapKey("Sue"))
   .andThen(Person.lenses().age());
 
-Company newCompany = lens.update(company, (int age) -> age + 1);
+Company newCompany = lens.updateAsInt(company, (int age) -> age + 1);
 ```

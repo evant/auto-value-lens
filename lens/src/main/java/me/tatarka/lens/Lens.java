@@ -31,15 +31,15 @@ public interface Lens<Outer, Inner> {
         return lens.compose(this);
     }
 
-    default LensInt<Outer> andThen(LensInt<Inner> lens) {
+    default IntLens<Outer> andThen(IntLens<Inner> lens) {
         return lens.compose(this);
     }
 
-    default LensLong<Outer> andThen(LensLong<Inner> lens) {
+    default LongLens<Outer> andThen(LongLens<Inner> lens) {
         return lens.compose(this);
     }
 
-    default LensDouble<Outer> andThen(LensDouble<Inner> lens) {
+    default DoubleLens<Outer> andThen(DoubleLens<Inner> lens) {
         return lens.compose(this);
     }
 

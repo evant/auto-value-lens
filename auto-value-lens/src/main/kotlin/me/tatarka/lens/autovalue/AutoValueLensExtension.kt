@@ -12,9 +12,9 @@ import javax.lang.model.util.ElementFilter
 import javax.tools.Diagnostic
 
 val lens = ClassName.get("me.tatarka.lens", "Lens")!!
-val lensInt = ClassName.get("me.tatarka.lens", "LensInt")!!
-val lensLong = ClassName.get("me.tatarka.lens", "LensLong")!!
-val lensDouble = ClassName.get("me.tatarka.lens", "LensDouble")!!
+val lensInt = ClassName.get("me.tatarka.lens", "IntLens")!!
+val lensLong = ClassName.get("me.tatarka.lens", "LongLens")!!
+val lensDouble = ClassName.get("me.tatarka.lens", "DoubleLens")!!
 val lensClassNames = listOf(lens, lensInt, lensLong, lensDouble)
 
 @AutoService(AutoValueExtension::class)

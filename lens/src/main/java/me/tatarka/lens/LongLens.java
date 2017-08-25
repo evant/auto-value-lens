@@ -2,9 +2,7 @@ package me.tatarka.lens;
 
 import me.tatarka.lens.function.LongToLongFunction;
 
-import java.util.function.Function;
-
-public interface LensLong<Outer> extends Lens<Outer, Long> {
+public interface LongLens<Outer> extends Lens<Outer, Long> {
 
     long getAsLong(Outer outer);
 
@@ -20,20 +18,20 @@ public interface LensLong<Outer> extends Lens<Outer, Long> {
         return setAsLong(outer, inner);
     }
 
-    default Outer update(Outer outer, LongToLongFunction f) {
+    default Outer updateAsLong(Outer outer, LongToLongFunction f) {
         return setAsLong(outer, f.applyAsLong(getAsLong(outer)));
     }
 
-    default <Outer2> LensLong<Outer2> compose(Lens<Outer2, Outer> lens) {
-        return new LensLong<Outer2>() {
+    default <Outer2> LongLens<Outer2> compose(Lens<Outer2, Outer> lens) {
+        return new LongLens<Outer2>() {
             @Override
             public long getAsLong(Outer2 outer2) {
-                return LensLong.this.getAsLong(lens.get(outer2));
+                return LongLens.this.getAsLong(lens.get(outer2));
             }
 
             @Override
             public Outer2 setAsLong(Outer2 outer2, long inner) {
-                return lens.set(outer2, LensLong.this.setAsLong(lens.get(outer2), inner));
+                return lens.set(outer2, LongLens.this.setAsLong(lens.get(outer2), inner));
             }
         };
     }
