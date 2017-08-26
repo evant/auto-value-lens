@@ -1,4 +1,4 @@
-rootProject.name = 'auto-value-lens'
+rootProject.name = 'auto-value-lens-project'
 include ':lens'
 include ':auto-value-lens'
 include ':auto-value-lens-annotations'

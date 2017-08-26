@@ -1,19 +1,19 @@
 package me.tatarka.lens;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import me.tatarka.lens.function.BiFunction;
+import me.tatarka.lens.function.Function;
 
-public interface Lens<Outer, Inner> {
+public abstract class Lens<Outer, Inner> {
 
-    Inner get(Outer outer);
+    public abstract Inner get(Outer outer);
 
-    Outer set(Outer outer, Inner inner);
+    public abstract Outer set(Outer outer, Inner inner);
 
-    default Outer update(Outer outer, Function<Inner, Inner> f) {
+    public Outer update(Outer outer, Function<Inner, Inner> f) {
         return set(outer, f.apply(get(outer)));
     }
 
-    default <Outer2> Lens<Outer2, Inner> compose(Lens<Outer2, Outer> lens) {
+    public <Outer2> Lens<Outer2, Inner> compose(final Lens<Outer2, Outer> lens) {
         return new Lens<Outer2, Inner>() {
             @Override
             public Inner get(Outer2 outer2) {
@@ -27,23 +27,23 @@ public interface Lens<Outer, Inner> {
         };
     }
 
-    default <Inner2> Lens<Outer, Inner2> andThen(Lens<Inner, Inner2> lens) {
+    public <Inner2> Lens<Outer, Inner2> andThen(Lens<Inner, Inner2> lens) {
         return lens.compose(this);
     }
 
-    default IntLens<Outer> andThen(IntLens<Inner> lens) {
+    public IntLens<Outer> andThen(IntLens<Inner> lens) {
         return lens.compose(this);
     }
 
-    default LongLens<Outer> andThen(LongLens<Inner> lens) {
+    public LongLens<Outer> andThen(LongLens<Inner> lens) {
         return lens.compose(this);
     }
 
-    default DoubleLens<Outer> andThen(DoubleLens<Inner> lens) {
+    public DoubleLens<Outer> andThen(DoubleLens<Inner> lens) {
         return lens.compose(this);
     }
 
-    static <T> Lens<T, T> identity() {
+    public static <T> Lens<T, T> identity() {
         return new Lens<T, T>() {
             @Override
             public T get(T value) {
@@ -57,7 +57,7 @@ public interface Lens<Outer, Inner> {
         };
     }
 
-    static <Outer, Inner> Lens<Outer, Inner> of(Function<Outer, Inner> getFunction, BiFunction<Outer, Inner, Outer> setFunction) {
+    public static <Outer, Inner> Lens<Outer, Inner> of(final Function<Outer, Inner> getFunction, final BiFunction<Outer, Inner, Outer> setFunction) {
         return new Lens<Outer, Inner>() {
             @Override
             public Inner get(Outer outer) {

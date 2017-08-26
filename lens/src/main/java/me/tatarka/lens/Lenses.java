@@ -1,13 +1,16 @@
 package me.tatarka.lens;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class Lenses {
     private Lenses() {
         throw new AssertionError();
     }
 
-    public static <E> Lens<List<E>, E> listIndex(int index) {
+    public static <E> Lens<List<E>, E> listIndex(final int index) {
         return new Lens<List<E>, E>() {
             @Override
             public E get(List<E> list) {
@@ -23,7 +26,7 @@ public final class Lenses {
         };
     }
 
-    public static <K, V> Lens<Map<K, V>, V> mapKey(K key) {
+    public static <K, V> Lens<Map<K, V>, V> mapKey(final K key) {
         return new Lens<Map<K, V>, V>() {
             @Override
             public V get(Map<K, V> map) {

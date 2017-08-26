@@ -2,27 +2,28 @@ package me.tatarka.lens;
 
 import me.tatarka.lens.function.LongToLongFunction;
 
-public interface LongLens<Outer> extends Lens<Outer, Long> {
+public abstract class LongLens<Outer> extends Lens<Outer, Long> {
 
-    long getAsLong(Outer outer);
+    public abstract long getAsLong(Outer outer);
 
-    Outer setAsLong(Outer outer, long inner);
+    public abstract Outer setAsLong(Outer outer, long inner);
 
     @Override
-    default Long get(Outer outer) {
+    public Long get(Outer outer) {
         return getAsLong(outer);
     }
 
     @Override
-    default Outer set(Outer outer, Long inner) {
+    public Outer set(Outer outer, Long inner) {
         return setAsLong(outer, inner);
     }
 
-    default Outer updateAsLong(Outer outer, LongToLongFunction f) {
+    public Outer updateAsLong(Outer outer, LongToLongFunction f) {
         return setAsLong(outer, f.applyAsLong(getAsLong(outer)));
     }
 
-    default <Outer2> LongLens<Outer2> compose(Lens<Outer2, Outer> lens) {
+    @Override
+    public <Outer2> LongLens<Outer2> compose(final Lens<Outer2, Outer> lens) {
         return new LongLens<Outer2>() {
             @Override
             public long getAsLong(Outer2 outer2) {
